@@ -1,13 +1,57 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @apply m-0 overflow-x-hidden;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  @apply w-screen min-h-screen bg-dark-normal;
+}
+
+.underline-colorful {
+  @apply relative;
+}
+
+.underline-colorful::before {
+  content: "";
+  bottom: -5px;
+  height: 3px;
+  transform: translateX(-50%);
+  @apply bg-blue-sky absolute w-full left-1/2 rounded-lg;
+}
+
+.center-item {
+  @apply left-1/2 top-1/2 absolute;
+  transform: translate(-50%, -50%);
+}
+
+.grid-auto-fill {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+  grid-gap: 20px;
+  width: 90%;
+}
+
+.ellipsis-two,
+.ellipsis-four {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}
+.ellipsis-two {
+  -webkit-line-clamp: 2;
+}
+.ellipsis-four {
+  -webkit-line-clamp: 4;
+}
+
+.background-image {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  opacity: 0.5;
 }
