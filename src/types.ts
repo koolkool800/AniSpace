@@ -6,11 +6,6 @@ export interface Route {
   component: LazyExoticComponent<FC>;
 }
 
-export interface Pagination {
-  name: string;
-  path: string;
-}
-
 export interface Anime {
   titles?: {
     en?: string;

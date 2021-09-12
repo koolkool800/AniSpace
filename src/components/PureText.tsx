@@ -13,7 +13,7 @@ const PureText: FC<PureTextProps> = ({ text, className, style }) => {
     if (elementRef.current !== null) {
       const div = document.createElement("div");
       div.innerHTML = text;
-      elementRef.current.innerText = div.innerText;
+      elementRef.current.innerText = div.innerText.replace(/[\r\n]{2,}/g, "\n");
     }
   }, [elementRef]);
 
