@@ -15,7 +15,7 @@ const PureText: FC<PureTextProps> = ({ text, className, style }) => {
       div.innerHTML = text;
       elementRef.current.innerText = div.innerText.replace(/[\r\n]{2,}/g, "\n");
     }
-  }, [elementRef]);
+  }, [elementRef, text]);
 
   return <p ref={elementRef} className={className} style={style}></p>;
 };

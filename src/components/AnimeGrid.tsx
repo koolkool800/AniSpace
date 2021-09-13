@@ -33,13 +33,13 @@ const AnimeGrid: FC<AnimeGridProps> = ({ data, skeleton }) => {
           <Fragment key={index}>
             {group.map((e) => (
               <Link key={e.id} to={`/anime/${e.id}`}>
-                <div className="relative rounded-xl overflow-hidden bg-dark-darken">
-                  <div className="h-full flex flex-col">
-                    <div className="flex-grow h-56 relative hover:opacity-70 transition group">
+                <div className="relative rounded-md overflow-hidden bg-dark-darken" style={{ paddingBottom: "156.25%" }}>
+                  <div className="h-full w-full absolute top-0 left-0">
+                    <div className="card-background-container">
                       <img className="h-full w-full object-cover" src={e.cover_image} alt="" />
                       <Play className="top-1/2 left-1/2 absolute opacity-0 group-hover:opacity-100 transition" style={{ transform: "translate(-50%, -50%)" }} />
                     </div>
-                    <p className="text-gray-400 flex-shrink-0 ellipsis-two text-base h-14 px-2 py-1 uppercase hover:text-blue-sky transition font-medium">{e.titles?.en || e.titles?.jp || e.titles?.it || "Unknown title"}</p>
+                    <p className="text-gray-400 flex-shrink-0 ellipsis-two text-xs h-9 md:text-base md:h-14 px-2 py-1 uppercase hover:text-blue-sky transition font-medium">{e.titles?.en || e.titles?.jp || e.titles?.it || "Unknown title"}</p>
                   </div>
                 </div>
               </Link>

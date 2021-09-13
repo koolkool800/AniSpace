@@ -22,6 +22,7 @@ export interface Anime {
   banner_image: string;
   genres?: string[];
   id: number;
+  episodes_count: number;
 }
 
 export interface AnimeList {

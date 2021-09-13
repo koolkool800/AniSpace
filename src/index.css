@@ -58,3 +58,18 @@ body {
   background-position: center;
   background-size: cover;
 }
+
+.card-background-container {
+  @apply w-full relative hover:opacity-70 transition group;
+  height: calc(100% - 56px);
+}
+
+@media (max-width: 640px) {
+  .grid-auto-fill {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .card-background-container {
+    height: calc(100% - 38px);
+  }
+}
