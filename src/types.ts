@@ -35,6 +35,7 @@ export interface AnimeList {
 export interface Episode {
   number: number;
   anime_id: number;
+  episodes_count: number;
   links: { href: string; value: string }[];
   video: string;
   id: number;

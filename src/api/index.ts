@@ -1,6 +1,6 @@
 import { Anime, AnimeList, Episode } from "../types";
 import axios from "./axios";
-import { PROXY_URL, API_URL } from "../constants";
+import { PROXY_URL, API_URL } from "../utils/constants";
 import * as cheerio from "cheerio";
 
 const switchToProxy = async <T>(pathname: string): Promise<T> => {
@@ -45,6 +45,8 @@ export const getAnimeDetail = async (id: string): Promise<Anime> => {
 };
 
 export const getEpisodeData = async (animeId: string, episodeId: string): Promise<Episode> => {
+  const { episodes_count } = await getAnimeDetail(animeId);
+
   const episodePathname = `episode?locale=en&source=gogoanime&anime_id=${animeId}&number=${episodeId}`;
   const data = await switchToProxy<{ documents: Episode[] }>(episodePathname);
 
@@ -64,5 +66,5 @@ export const getEpisodeData = async (animeId: string, episodeId: string): Promis
     })
     .toArray();
 
-  return { ...episode, video, links };
+  return { ...episode, video, links, episodes_count };
 };

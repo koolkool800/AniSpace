@@ -39,7 +39,7 @@ const AnimeGrid: FC<AnimeGridProps> = ({ data, skeleton }) => {
                       <img className="h-full w-full object-cover" src={e.cover_image} alt="" />
                       <Play className="top-1/2 left-1/2 absolute opacity-0 group-hover:opacity-100 transition" style={{ transform: "translate(-50%, -50%)" }} />
                     </div>
-                    <p className="text-gray-400 flex-shrink-0 ellipsis-two text-xs h-9 md:text-base md:h-14 px-2 py-1 uppercase hover:text-blue-sky transition font-medium">{e.titles?.en || e.titles?.jp || e.titles?.it || "Unknown title"}</p>
+                    <p className="flex-shrink-0 ellipsis-two text-xs h-9 md:text-base md:h-14 px-2 py-1 uppercase hover:text-blue-sky transition font-medium">{e.titles?.en || e.titles?.jp || e.titles?.it || "Unknown title"}</p>
                   </div>
                 </div>
               </Link>

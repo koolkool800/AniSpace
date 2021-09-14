@@ -7,6 +7,7 @@ import PureText from "../../components/PureText";
 
 import Play from "../../asset/svg/Play";
 import Skeleton from "../../components/Skeleton";
+import WentWrong from "../../components/WentWrong";
 
 const Anime: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -18,7 +19,7 @@ const Anime: FC = () => {
   const [trailerBackdropOpened, setTrailerBackdropOpened] = useState(false);
   const [trailerSkeleton, setTrailerSkeleton] = useState(true);
 
-  if (error) return <div>Something went wrong</div>;
+  if (error) return <WentWrong />;
 
   return (
     <div className="relative">

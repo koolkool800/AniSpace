@@ -6,13 +6,14 @@ import AnimeGrid from "../../components/AnimeGrid";
 import { getAnimeList } from "../../api";
 import Carousel from "../../components/Carousel";
 import Skeleton from "../../components/Skeleton";
+import WentWrong from "../../components/WentWrong";
 
 const Home: FC = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery("animeList", ({ pageParam = 1 }) => getAnimeList(pageParam), {
     getNextPageParam: (page) => (page.current_page + 1 <= page.count ? page.current_page + 1 : undefined),
   });
 
-  if (error) return <div>Something went wrong</div>;
+  if (error) return <WentWrong />;
 
   return (
     <>

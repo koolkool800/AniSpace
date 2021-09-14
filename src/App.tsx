@@ -4,6 +4,7 @@ import { routes } from "./routes";
 import TopBarProgress from "react-topbar-progress-indicator";
 
 import NavBar from "./components/NavBar";
+import NotFound from "./components/NotFound";
 
 TopBarProgress.config({
   barColors: {
@@ -21,7 +22,7 @@ function App() {
           {routes.map((e) => (
             <Route exact key={e.path} path={e.path} component={e.component} />
           ))}
-          <Route>Not Found</Route>
+          <Route component={NotFound}></Route>
         </Switch>
       </Suspense>
     </>
