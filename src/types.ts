@@ -31,3 +31,11 @@ export interface AnimeList {
   last_page: number;
   documents: Anime[];
 }
+
+export interface Episode {
+  number: number;
+  anime_id: number;
+  links: { href: string; value: string }[];
+  video: string;
+  id: number;
+}

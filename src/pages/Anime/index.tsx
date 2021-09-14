@@ -31,10 +31,10 @@ const Anime: FC = () => {
           {data && (
             <div className="flex gap-3 md:py-3 md:justify-start justify-center md:h-16">
               {data?.episodes_count ? (
-                <button className="bg-dark-lighten md:bg-dark-normal hover:bg-dark-darken text-white transition py-2 px-4 rounded-md outline-none flex items-center gap-1">
+                <Link to={`/anime/${id}/1`} className="bg-dark-lighten md:bg-dark-normal hover:bg-dark-darken text-white transition py-2 px-4 rounded-md outline-none flex items-center gap-1">
                   <Play style={{ height: 30, width: 30 }} />
                   <span>Watch now</span>
-                </button>
+                </Link>
               ) : (
                 ""
               )}

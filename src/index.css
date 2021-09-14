@@ -4,6 +4,7 @@
 
 * {
   box-sizing: border-box;
+  @apply text-gray-400;
 }
 
 body {
