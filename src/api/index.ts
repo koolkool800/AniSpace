@@ -24,7 +24,13 @@ const switchToProxy = async <T>(pathname: string): Promise<T> => {
 };
 
 export const getAnimeList = async (page: number): Promise<AnimeList> => {
-  const pathname = `anime?per_page=50&page=${page}`;
+  const pathname = `anime?sort_fields=score&sort_directions=-1&per_page=50&page=${page}`;
+  const data = await switchToProxy<AnimeList>(pathname);
+  return data;
+};
+
+export const searchAnime = async (page: number, q: string): Promise<AnimeList> => {
+  const pathname = `anime?per_page=50&page=${page}&title=${encodeURIComponent(q)}`;
   const data = await switchToProxy<AnimeList>(pathname);
   return data;
 };

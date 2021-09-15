@@ -35,6 +35,7 @@ body {
 .grid-auto-fill {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  grid-auto-rows: 1fr;
   gap: 20px;
   grid-gap: 20px;
   max-width: 90%;

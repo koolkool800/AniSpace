@@ -8,9 +8,10 @@ import Skeleton from "../components/Skeleton";
 interface AnimeGridProps {
   data: Anime[][];
   skeleton: boolean;
+  title: string;
 }
 
-const AnimeGrid: FC<AnimeGridProps> = ({ data, skeleton }) => {
+const AnimeGrid: FC<AnimeGridProps> = ({ data, skeleton, title }) => {
   const gridRef = useRef<HTMLDivElement>(null);
   const [skeletonCount, setSkeletonCount] = useState(6);
 
@@ -27,7 +28,7 @@ const AnimeGrid: FC<AnimeGridProps> = ({ data, skeleton }) => {
 
   return (
     <>
-      <h1 className="mx-one-twenty text-gray-300 text-2xl my-4">Recommend</h1>
+      <h1 className="mx-one-twenty text-gray-300 text-2xl my-4">{title}</h1>
       <div ref={gridRef} className="grid-auto-fill mx-one-twenty">
         {data.map((group, index) => (
           <Fragment key={index}>
@@ -49,7 +50,7 @@ const AnimeGrid: FC<AnimeGridProps> = ({ data, skeleton }) => {
         {skeleton && (
           <>
             {new Array(skeletonCount).fill("").map((_, index) => (
-              <Skeleton key={index} className="rounded-xl" style={{ height: 280 }} />
+              <Skeleton key={index} className="rounded-xl" />
             ))}
           </>
         )}

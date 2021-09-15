@@ -1,7 +1,6 @@
 import { FC, LazyExoticComponent } from "react";
 
 export interface Route {
-  name: string;
   path: string;
   component: LazyExoticComponent<FC>;
 }
@@ -27,7 +26,6 @@ export interface Anime {
 
 export interface AnimeList {
   current_page: number;
-  count: number;
   last_page: number;
   documents: Anime[];
 }

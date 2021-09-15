@@ -10,7 +10,7 @@ import WentWrong from "../../components/WentWrong";
 
 const Home: FC = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery("animeList", ({ pageParam = 1 }) => getAnimeList(pageParam), {
-    getNextPageParam: (page) => (page.current_page + 1 <= page.count ? page.current_page + 1 : undefined),
+    getNextPageParam: (page) => (page.current_page + 1 <= page.last_page ? page.current_page + 1 : undefined),
   });
 
   if (error) return <WentWrong />;
@@ -20,7 +20,7 @@ const Home: FC = () => {
       <div className="w-screen px-one-twenty mt-4">{data?.pages[0] ? <Carousel data={data?.pages[0].documents.slice(0, 10)} /> : <Skeleton style={{ height: "calc(0.22 * 99vw)", minHeight: 150 }} className="rounded-md" />}</div>
       <div>
         <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={Boolean(hasNextPage)} loader={<></>}>
-          <AnimeGrid skeleton={Boolean(isFetching)} data={data?.pages.map((e, index) => (index === 0 ? e.documents.slice(10) : e.documents)) || [[]]} />
+          <AnimeGrid title="Recommend" skeleton={Boolean(isFetching)} data={data?.pages.map((e, index) => (index === 0 ? e.documents.slice(10) : e.documents)) || [[]]} />
         </InfiniteScroll>
       </div>
     </>
