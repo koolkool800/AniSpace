@@ -11,15 +11,11 @@ const switchToProxy = async <T>(pathname: string): Promise<T> => {
     console.log(error);
     const url = `${API_URL}${pathname}`;
     const response = (await axios.get(`${PROXY_URL}?url=${encodeURIComponent(url)}`)).data;
-    if (response.status_code !== 200) {
-      throw new Error();
-    }
+    if (response.status_code !== 200) throw response.status_code;
     return response.data;
   }
 
-  if (response.status_code !== 200) {
-    throw new Error();
-  }
+  if (response.status_code !== 200) throw response.status_code;
   return response.data;
 };
 
@@ -31,8 +27,17 @@ export const getAnimeList = async (page: number): Promise<AnimeList> => {
 
 export const searchAnime = async (page: number, q: string): Promise<AnimeList> => {
   const pathname = `anime?per_page=50&page=${page}&title=${encodeURIComponent(q)}`;
-  const data = await switchToProxy<AnimeList>(pathname);
-  return data;
+  try {
+    const data = await switchToProxy<AnimeList>(pathname);
+
+    return data;
+  } catch (error) {
+    return {
+      current_page: 1,
+      last_page: 1,
+      documents: [],
+    };
+  }
 };
 
 export const getAnimeDetail = async (id: string): Promise<Anime> => {

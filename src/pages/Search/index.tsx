@@ -33,7 +33,7 @@ const Search: FC = () => {
     <>
       <div>
         <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={Boolean(hasNextPage)} loader={<></>}>
-          <AnimeGrid title={`Search result for ${q}`} skeleton={Boolean(isFetching)} data={data?.pages.map((e) => e.documents) || [[]]} />
+          <AnimeGrid title={`Search result for ${q}${data?.pages[0]?.documents?.length === 0 ? " : No result found" : ""}`} skeleton={Boolean(isFetching)} data={data?.pages.map((e) => e.documents) || [[]]} />
         </InfiniteScroll>
       </div>
     </>
