@@ -5,6 +5,8 @@ import { getEpisodeData } from "../api";
 
 import Skeleton from "../components/Skeleton";
 
+import { anchorDownloadFile } from "../utils";
+
 import { Player, Video, DefaultUi, DefaultControls } from "@vime/react";
 import "@vime/core/themes/default.css";
 import WentWrong from "../components/WentWrong";
@@ -56,9 +58,18 @@ const Episode: FC = () => {
           </DefaultUi>
         </Player>
         <h1 className="my-4 ml-2">Video Quality</h1>
-        <div className="flex gap-2 flex-wrap">
+        <div className="flex gap-2 flex-wrap justify-between fill-last-item">
           {data?.links?.map((e) => (
             <button key={e.href} className={`text-white transition py-2 px-4 rounded-md outline-none${e.value === currentQuality ? " bg-blue-sky hover:bg-blue-700" : " bg-dark-lighten hover:bg-dark-darken"}`} onClick={() => setCurrentQuality(e.value)}>
+              {e.value}
+            </button>
+          ))}
+        </div>
+
+        <h1 className="my-4 ml-2">Download video</h1>
+        <div className="flex gap-2 flex-wrap justify-between fill-last-item">
+          {data?.links?.map((e) => (
+            <button key={e.href} className="text-white transition py-2 px-4 rounded-md outline-none  bg-dark-lighten hover:bg-dark-darken" onClick={() => anchorDownloadFile(e.href)}>
               {e.value}
             </button>
           ))}
