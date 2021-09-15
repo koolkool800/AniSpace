@@ -17,7 +17,7 @@ const Episode: FC = () => {
   const [currentQuality, setCurrentQuality] = useState("");
 
   useEffect(() => {
-    setCurrentQuality(data?.links.slice(-1)[0].value || "");
+    setCurrentQuality(data?.links[0].value || "");
   }, [data]);
 
   if (isLoading)
