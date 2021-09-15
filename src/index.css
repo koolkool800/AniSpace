@@ -74,3 +74,8 @@ body {
     height: calc(100% - 38px);
   }
 }
+
+.fill-last-item::after {
+  content: "";
+  flex: auto;
+}

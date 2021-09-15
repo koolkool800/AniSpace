@@ -38,7 +38,7 @@ const Episode: FC = () => {
   if (error) return <WentWrong />;
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="flex justify-center" style={{ margin: "0 2%" }}>
       <div className="w-full max-w-2xl">
         <h1 className="my-4 ml-2 text-2xl">
           <Link className="text-blue-sky" to={`/anime/${id}`}>
@@ -65,7 +65,7 @@ const Episode: FC = () => {
         </div>
 
         <h1 className="my-4 ml-2">Episodes</h1>
-        <div className="flex gap-2 flex-wrap mb-5">
+        <div className="flex gap-2 flex-wrap mb-5 justify-between fill-last-item">
           {new Array(data?.episodes_count).fill("").map((_, index) => (
             <Link to={`/anime/${id}/${index + 1}`} key={index + 1} className={`text-white transition py-2 px-4 rounded-md outline-none${index + 1 === Number(episode) ? " bg-blue-sky hover:bg-blue-700" : " bg-dark-lighten hover:bg-dark-darken"}`}>
               {index + 1}
