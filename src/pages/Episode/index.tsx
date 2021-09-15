@@ -5,7 +5,7 @@ import { getEpisodeData } from "../../api";
 
 import Skeleton from "../../components/Skeleton";
 
-import { Player, Video, DefaultUi } from "@vime/react";
+import { Player, Video, DefaultUi, DefaultControls } from "@vime/react";
 import "@vime/core/themes/default.css";
 import WentWrong from "../../components/WentWrong";
 
@@ -24,6 +24,7 @@ const Episode: FC = () => {
     return (
       <div className="w-full flex justify-center mt-8">
         <div className="w-full max-w-2xl">
+          <Skeleton className="w-96 h-7 my-4 rounded" />
           <Skeleton className="w-full h-0" style={{ paddingBottom: "56.25%" }} />
           <Skeleton className="w-56 h-7 my-4 rounded" />
           <div className="flex gap-2 flex-wrap mb-5">
@@ -37,14 +38,22 @@ const Episode: FC = () => {
   if (error) return <WentWrong />;
 
   return (
-    <div className="w-full flex justify-center mt-8">
+    <div className="w-full flex justify-center">
       <div className="w-full max-w-2xl">
+        <h1 className="my-4 ml-2 text-2xl">
+          <Link className="text-blue-sky" to={`/anime/${id}`}>
+            {data?.titles?.en || data?.titles?.jp || data?.titles?.it || "Unknown title"}
+          </Link>{" "}
+          <span>Episode {episode}</span>
+        </h1>
         <Player>
           <Video>
             <source data-src={data?.links.find((e) => e.value === currentQuality)?.href} type="video/mp4" />
           </Video>
 
-          <DefaultUi />
+          <DefaultUi noControls>
+            <DefaultControls hideOnMouseLeave />
+          </DefaultUi>
         </Player>
         <h1 className="my-4 ml-2">Video Quality</h1>
         <div className="flex gap-2 flex-wrap">

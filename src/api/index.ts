@@ -45,7 +45,7 @@ export const getAnimeDetail = async (id: string): Promise<Anime> => {
 };
 
 export const getEpisodeData = async (animeId: string, episodeId: string): Promise<Episode> => {
-  const { episodes_count } = await getAnimeDetail(animeId);
+  const { titles, episodes_count } = await getAnimeDetail(animeId);
 
   const episodePathname = `episode?locale=en&source=gogoanime&anime_id=${animeId}&number=${episodeId}`;
   const data = await switchToProxy<{ documents: Episode[] }>(episodePathname);
@@ -66,5 +66,5 @@ export const getEpisodeData = async (animeId: string, episodeId: string): Promis
     })
     .toArray();
 
-  return { ...episode, video, links, episodes_count };
+  return { ...episode, video, links, episodes_count, titles };
 };

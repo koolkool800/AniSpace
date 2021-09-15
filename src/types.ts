@@ -37,6 +37,11 @@ export interface Episode {
   anime_id: number;
   episodes_count: number;
   links: { href: string; value: string }[];
+  titles?: {
+    en?: string;
+    jp?: string;
+    it?: string;
+  };
   video: string;
   id: number;
 }

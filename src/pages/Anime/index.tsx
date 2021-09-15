@@ -15,7 +15,6 @@ const Anime: FC = () => {
   const { data, error } = useQuery(`anime-${id}`, () => getAnimeDetail(id));
 
   const [expandDescription, setExpandDescription] = useState(false);
-  const [expandGenres, setExpandGenres] = useState(false);
   const [trailerBackdropOpened, setTrailerBackdropOpened] = useState(false);
   const [trailerSkeleton, setTrailerSkeleton] = useState(true);
 
@@ -53,7 +52,10 @@ const Anime: FC = () => {
               <PureText text={data?.titles?.en || data?.titles?.jp || data?.titles?.it || "Unknown title"} className="text-white text-3xl mt-2" />
               {(data?.descriptions?.en || data?.descriptions?.jp || data?.descriptions?.it) && (
                 <div>
-                  <PureText text={data?.descriptions?.en || data?.descriptions?.jp || data?.descriptions?.it || ""} className={`text-gray-300 text-base${!expandDescription ? " ellipsis-four" : ""}`} />
+                  <div className={`text-gray-300 text-base ${!expandDescription ? " ellipsis-four" : ""}`}>
+                    <PureText text={data?.descriptions?.en || data?.descriptions?.jp || data?.descriptions?.it || ""} />
+                    <PureText text={`Genre: ${data?.genres?.join(", ")}`} />
+                  </div>
                   <span onClick={() => setExpandDescription((prev) => !prev)} className="text-blue-400 hover:text-blue-500 transition cursor-pointer">
                     {expandDescription ? "Hide" : "Expand"}
                   </span>
@@ -62,25 +64,6 @@ const Anime: FC = () => {
             </>
           ) : (
             new Array(10).fill("").map((_, i) => <Skeleton key={i} className="w-full h-4 my-3 rounded-md" />)
-          )}
-
-          {data?.genres?.length && (
-            <div>
-              <p className={`text-gray-300${!expandGenres ? " ellipsis-two" : ""}`}>
-                <span>Genre: </span>
-                {data?.genres?.map((e, index) => (
-                  <Fragment key={e}>
-                    <Link className="hover:text-gray-400 transition" to={`/genre/${encodeURIComponent(e)}`}>
-                      {e}
-                    </Link>
-                    {index < Number(data?.genres?.length) - 1 && <span>, </span>}
-                  </Fragment>
-                ))}
-              </p>
-              <span onClick={() => setExpandGenres((prev) => !prev)} className="text-blue-400 hover:text-blue-500 transition cursor-pointer">
-                {expandGenres ? "Hide" : "More genres"}
-              </span>
-            </div>
           )}
         </div>
       </div>
