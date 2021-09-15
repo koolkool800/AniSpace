@@ -1,13 +1,13 @@
-import { FC, Fragment, useState } from "react";
+import { FC, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 
-import { getAnimeDetail } from "../../api";
-import PureText from "../../components/PureText";
+import { getAnimeDetail } from "../api";
+import PureText from "../components/PureText";
 
-import Play from "../../asset/svg/Play";
-import Skeleton from "../../components/Skeleton";
-import WentWrong from "../../components/WentWrong";
+import Play from "../asset/svg/Play";
+import Skeleton from "../components/Skeleton";
+import WentWrong from "../components/WentWrong";
 
 const Anime: FC = () => {
   const { id } = useParams<{ id: string }>();

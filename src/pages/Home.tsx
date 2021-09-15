@@ -2,11 +2,11 @@ import { FC } from "react";
 import { useInfiniteQuery } from "react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import AnimeGrid from "../../components/AnimeGrid";
-import { getAnimeList } from "../../api";
-import Carousel from "../../components/Carousel";
-import Skeleton from "../../components/Skeleton";
-import WentWrong from "../../components/WentWrong";
+import AnimeGrid from "../components/AnimeGrid";
+import { getAnimeList } from "../api";
+import Carousel from "../components/Carousel";
+import Skeleton from "../components/Skeleton";
+import WentWrong from "../components/WentWrong";
 
 const Home: FC = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery("animeList", ({ pageParam = 1 }) => getAnimeList(pageParam), {

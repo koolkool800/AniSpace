@@ -1,13 +1,13 @@
 import { FC, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "react-query";
-import { getEpisodeData } from "../../api";
+import { getEpisodeData } from "../api";
 
-import Skeleton from "../../components/Skeleton";
+import Skeleton from "../components/Skeleton";
 
 import { Player, Video, DefaultUi, DefaultControls } from "@vime/react";
 import "@vime/core/themes/default.css";
-import WentWrong from "../../components/WentWrong";
+import WentWrong from "../components/WentWrong";
 
 const Episode: FC = () => {
   const { id, episode } = useParams<{ id: string; episode: string }>();

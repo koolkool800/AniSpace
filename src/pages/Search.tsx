@@ -3,9 +3,9 @@ import { useLocation, useHistory } from "react-router-dom";
 import { useInfiniteQuery } from "react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import AnimeGrid from "../../components/AnimeGrid";
-import { searchAnime } from "../../api";
-import WentWrong from "../../components/WentWrong";
+import AnimeGrid from "../components/AnimeGrid";
+import { searchAnime } from "../api";
+import WentWrong from "../components/WentWrong";
 
 function useQuery() {
   return new URLSearchParams(useLocation().search);
