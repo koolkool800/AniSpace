@@ -24,7 +24,7 @@ const Episode: FC = () => {
 
   if (isLoading)
     return (
-      <div className="w-full flex justify-center mt-8 mx-two-percent">
+      <div className="flex justify-center mt-8 mx-two-percent">
         <div className="w-full max-w-2xl">
           <Skeleton className="w-96 h-7 my-4 rounded" />
           <Skeleton className="w-full h-0" style={{ paddingBottom: "56.25%" }} />
@@ -48,7 +48,7 @@ const Episode: FC = () => {
           </Link>{" "}
           <span>Episode {episode}</span>
         </h1>
-        <Player playsinline>
+        <Player playsinline controls={false}>
           <Video>
             <source data-src={data?.links.find((e) => e.value === currentQuality)?.href} type="video/mp4" />
           </Video>
