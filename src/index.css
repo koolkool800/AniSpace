@@ -41,18 +41,16 @@ body {
   max-width: 90%;
 }
 
-.ellipsis-two,
-.ellipsis-four {
+.ellipsis-two {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-}
-.ellipsis-two {
   -webkit-line-clamp: 2;
 }
-.ellipsis-four {
-  -webkit-line-clamp: 4;
+
+.darken-to-bottom {
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
 .background-image {

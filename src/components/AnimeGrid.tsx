@@ -50,7 +50,7 @@ const AnimeGrid: FC<AnimeGridProps> = ({ data, skeleton, title }) => {
         {skeleton && (
           <>
             {new Array(skeletonCount).fill("").map((_, index) => (
-              <Skeleton key={index} className="rounded-xl" />
+              <Skeleton key={index} className="rounded-xl" style={{ paddingBottom: "156.25%" }} />
             ))}
           </>
         )}

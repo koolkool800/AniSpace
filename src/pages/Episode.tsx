@@ -24,7 +24,7 @@ const Episode: FC = () => {
 
   if (isLoading)
     return (
-      <div className="w-full flex justify-center mt-8">
+      <div className="w-full flex justify-center mt-8 mx-two-percent">
         <div className="w-full max-w-2xl">
           <Skeleton className="w-96 h-7 my-4 rounded" />
           <Skeleton className="w-full h-0" style={{ paddingBottom: "56.25%" }} />
@@ -40,7 +40,7 @@ const Episode: FC = () => {
   if (error) return <WentWrong />;
 
   return (
-    <div className="flex justify-center" style={{ margin: "0 2%" }}>
+    <div className="flex justify-center mx-two-percent">
       <div className="w-full max-w-2xl">
         <h1 className="my-4 ml-2 text-2xl">
           <Link className="text-blue-sky" to={`/anime/${id}`}>
@@ -48,17 +48,16 @@ const Episode: FC = () => {
           </Link>{" "}
           <span>Episode {episode}</span>
         </h1>
-        <Player>
+        <Player playsinline>
           <Video>
             <source data-src={data?.links.find((e) => e.value === currentQuality)?.href} type="video/mp4" />
           </Video>
-
           <DefaultUi noControls>
             <DefaultControls hideOnMouseLeave />
           </DefaultUi>
         </Player>
         <h1 className="my-4 ml-2">Video Quality</h1>
-        <div className="flex gap-2 flex-wrap justify-between fill-last-item">
+        <div className="flex gap-2 flex-wrap">
           {data?.links?.map((e) => (
             <button key={e.href} className={`text-white transition py-2 px-4 rounded-md outline-none${e.value === currentQuality ? " bg-blue-sky hover:bg-blue-700" : " bg-dark-lighten hover:bg-dark-darken"}`} onClick={() => setCurrentQuality(e.value)}>
               {e.value}
@@ -67,7 +66,7 @@ const Episode: FC = () => {
         </div>
 
         <h1 className="my-4 ml-2">Download video</h1>
-        <div className="flex gap-2 flex-wrap justify-between fill-last-item">
+        <div className="flex gap-2 flex-wrap">
           {data?.links?.map((e) => (
             <button key={e.href} className="text-white transition py-2 px-4 rounded-md outline-none  bg-dark-lighten hover:bg-dark-darken" onClick={() => anchorDownloadFile(e.href)}>
               {e.value}

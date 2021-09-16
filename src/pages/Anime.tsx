@@ -52,7 +52,7 @@ const Anime: FC = () => {
               <PureText text={data?.titles?.en || data?.titles?.jp || data?.titles?.it || "Unknown title"} className="text-white text-3xl mt-2" />
               {(data?.descriptions?.en || data?.descriptions?.jp || data?.descriptions?.it) && (
                 <div>
-                  <div className={`text-gray-300 text-base ${!expandDescription ? " ellipsis-four" : ""}`}>
+                  <div className={`text-gray-50 text-base overflow-hidden ${!expandDescription ? "max-h-36 darken-to-bottom" : "max-h-infinity"}`}>
                     <PureText text={data?.descriptions?.en || data?.descriptions?.jp || data?.descriptions?.it || ""} />
                     <PureText text={`Genre: ${data?.genres?.join(", ")}`} />
                   </div>

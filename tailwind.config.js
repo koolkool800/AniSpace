@@ -12,6 +12,7 @@ module.exports = {
       },
       spacing: {
         "one-twenty": "5%",
+        "two-percent": "2%",
       },
     },
   },
