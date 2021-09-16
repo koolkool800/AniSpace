@@ -1,5 +1,5 @@
-import { FC, FormEvent, useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { FC, FormEvent, useState, useEffect } from "react";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 import Search from "../asset/svg/Search";
 import Cross from "../asset/svg/Cross";
@@ -9,6 +9,11 @@ const NavBar: FC = () => {
   const [responsiveSearchActive, setResponsiveSearchActive] = useState(false);
 
   const history = useHistory();
+  const location = useLocation();
+
+  useEffect(() => {
+    setResponsiveSearchActive(false);
+  }, [location]);
 
   const handleFormSubmit = (e: FormEvent) => {
     e.preventDefault();
