@@ -1,13 +1,14 @@
-import { CSSProperties, FC } from "react";
+import { CSSProperties, FC, MouseEventHandler } from "react";
 
 interface PlayProps {
   className?: string;
   style?: CSSProperties;
+  onClick?: MouseEventHandler;
 }
 
-const Play: FC<PlayProps> = ({ className, style }) => {
+const Play: FC<PlayProps> = ({ className, style, onClick }) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" className={`text-white h-12 w-12 ${className}`} style={style} viewBox="0 0 20 20" fill="currentColor">
+    <svg onClick={onClick} xmlns="http://www.w3.org/2000/svg" className={`text-white h-12 w-12 ${className}`} style={style} viewBox="0 0 20 20" fill="currentColor">
       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
     </svg>
   );
