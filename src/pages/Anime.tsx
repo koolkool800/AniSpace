@@ -18,7 +18,7 @@ const Anime: FC = () => {
 
   useEffect(() => {
     addToStorage({ id, cover_image: data?.cover_image, viewedAt: Date.now(), titles: data?.titles });
-  }, [data]);
+  }, [data, id]);
 
   const [expandDescription, setExpandDescription] = useState(false);
   const [trailerBackdropOpened, setTrailerBackdropOpened] = useState(false);
