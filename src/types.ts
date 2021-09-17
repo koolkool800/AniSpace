@@ -43,3 +43,14 @@ export interface Episode {
   video: string;
   id: number;
 }
+
+export interface StorageAnime {
+  titles?: {
+    en?: string;
+    jp?: string;
+    it?: string;
+  };
+  cover_image?: string;
+  id: string;
+  viewedAt?: number;
+}

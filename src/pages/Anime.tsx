@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 
@@ -9,10 +9,16 @@ import Play from "../asset/svg/Play";
 import Skeleton from "../components/Skeleton";
 import WentWrong from "../components/WentWrong";
 
+import { addToStorage } from "../utils/localStorage";
+
 const Anime: FC = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data, error } = useQuery(`anime-${id}`, () => getAnimeDetail(id));
+
+  useEffect(() => {
+    addToStorage({ id, cover_image: data?.cover_image, viewedAt: Date.now(), titles: data?.titles });
+  }, [data]);
 
   const [expandDescription, setExpandDescription] = useState(false);
   const [trailerBackdropOpened, setTrailerBackdropOpened] = useState(false);
