@@ -25,7 +25,7 @@ const Episode: FC = () => {
 
   useEffect(() => {
     addEpisodeToStorage(id, episode);
-  }, [data, episode]);
+  }, [data, episode, id]);
 
   if (isLoading)
     return (
