@@ -78,3 +78,7 @@ body {
   content: "";
   flex: auto;
 }
+
+.darken-btn {
+  @apply bg-dark-lighten md:bg-dark-normal hover:bg-dark-darken text-white transition py-2 px-4 rounded-md outline-none flex items-center gap-1;
+}

@@ -6,6 +6,7 @@ import { getEpisodeData } from "../api";
 import Skeleton from "../components/Skeleton";
 
 import { anchorDownloadFile } from "../utils";
+import { addEpisodeToStorage } from "../utils/localStorage";
 
 import { Player, Video, DefaultUi, DefaultControls } from "@vime/react";
 import "@vime/core/themes/default.css";
@@ -21,6 +22,10 @@ const Episode: FC = () => {
   useEffect(() => {
     setCurrentQuality(data?.links[0].value || "");
   }, [data]);
+
+  useEffect(() => {
+    addEpisodeToStorage(id, episode);
+  }, [data, episode]);
 
   if (isLoading)
     return (

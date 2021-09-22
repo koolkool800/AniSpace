@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useMemo } from "react";
 import { useInfiniteQuery } from "react-query";
 import InfiniteScroll from "react-infinite-scroll-component";
 
@@ -8,16 +8,16 @@ import Carousel from "../components/Carousel";
 import Skeleton from "../components/Skeleton";
 import WentWrong from "../components/WentWrong";
 
-import { getStorage } from "../utils/localStorage";
+import { getAnimeStorage } from "../utils/localStorage";
 
 const Home: FC = () => {
   const { data, error, fetchNextPage, hasNextPage, isFetching } = useInfiniteQuery("animeList", ({ pageParam = 1 }) => getAnimeList(pageParam), {
     getNextPageParam: (page) => (page.current_page + 1 <= page.last_page ? page.current_page + 1 : undefined),
   });
 
-  if (error) return <WentWrong />;
+  const recently = useMemo(getAnimeStorage, [data]);
 
-  const recently = getStorage();
+  if (error) return <WentWrong />;
 
   return (
     <>

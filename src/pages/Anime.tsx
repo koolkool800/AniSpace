@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState, useEffect, useMemo } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useQuery } from "react-query";
 
@@ -9,7 +9,7 @@ import Play from "../asset/svg/Play";
 import Skeleton from "../components/Skeleton";
 import WentWrong from "../components/WentWrong";
 
-import { addToStorage } from "../utils/localStorage";
+import { addAnimeToStorage, getEpisodeStorage } from "../utils/localStorage";
 
 const Anime: FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -17,8 +17,10 @@ const Anime: FC = () => {
   const { data, error } = useQuery(`anime-${id}`, () => getAnimeDetail(id));
 
   useEffect(() => {
-    addToStorage({ id, cover_image: data?.cover_image, viewedAt: Date.now(), titles: data?.titles });
+    addAnimeToStorage({ id, cover_image: data?.cover_image, viewedAt: Date.now(), titles: data?.titles });
   }, [data, id]);
+
+  const recentEpisode = useMemo(() => getEpisodeStorage(id), [data]);
 
   const [expandDescription, setExpandDescription] = useState(false);
   const [trailerBackdropOpened, setTrailerBackdropOpened] = useState(false);
@@ -37,7 +39,7 @@ const Anime: FC = () => {
           {data && (
             <div className="flex gap-3 md:py-3 md:justify-start justify-center md:h-16">
               {data?.episodes_count ? (
-                <Link to={`/anime/${id}/1`} className="bg-dark-lighten md:bg-dark-normal hover:bg-dark-darken text-white transition py-2 px-4 rounded-md outline-none flex items-center gap-1">
+                <Link to={`/anime/${id}/1`} className="darken-btn">
                   <Play style={{ height: 30, width: 30 }} />
                   <span>Watch now</span>
                 </Link>
@@ -45,10 +47,16 @@ const Anime: FC = () => {
                 ""
               )}
               {data?.trailer_url && (
-                <button onClick={() => setTrailerBackdropOpened(true)} className="bg-dark-lighten md:bg-dark-normal hover:bg-dark-darken text-white transition py-2 px-4 rounded-md outline-none flex items-center gap-1">
+                <button onClick={() => setTrailerBackdropOpened(true)} className="darken-btn">
                   <Play style={{ height: 30, width: 30 }} />
                   <span>Watch trailer</span>
                 </button>
+              )}
+              {recentEpisode && (
+                <Link to={`/anime/${id}/${recentEpisode}`} className="darken-btn">
+                  <Play style={{ height: 30, width: 30 }} />
+                  <span>Continue watching episode {recentEpisode}</span>
+                </Link>
               )}
             </div>
           )}
