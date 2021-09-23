@@ -20,7 +20,7 @@ const Anime: FC = () => {
     addAnimeToStorage({ id, cover_image: data?.cover_image, viewedAt: Date.now(), titles: data?.titles });
   }, [data, id]);
 
-  const recentEpisode = useMemo(() => getEpisodeStorage(id), [data, id]);
+  const recentEpisode = useMemo(() => getEpisodeStorage(id), [id]);
 
   const [expandDescription, setExpandDescription] = useState(false);
   const [trailerBackdropOpened, setTrailerBackdropOpened] = useState(false);
