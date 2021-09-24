@@ -19,6 +19,8 @@ const Episode: FC = () => {
 
   const [currentQuality, setCurrentQuality] = useState("");
 
+  const [expandEpisodes, setExpandEpisodes] = useState(false);
+
   useEffect(() => {
     setCurrentQuality(data?.links[0].value || "");
   }, [data]);
@@ -45,7 +47,7 @@ const Episode: FC = () => {
   if (error) return <WentWrong />;
 
   return (
-    <div className="flex justify-center mx-two-percent">
+    <div className="flex justify-center mx-two-percent pb-8">
       <div className="w-full max-w-2xl">
         <h1 className="my-4 ml-2 text-2xl">
           <Link className="text-blue-sky" to={`/anime/${id}`}>
@@ -80,13 +82,18 @@ const Episode: FC = () => {
         </div>
 
         <h1 className="my-4 ml-2">Episodes</h1>
-        <div className="flex gap-2 flex-wrap mb-5 justify-between fill-last-item">
-          {new Array(data?.episodes_count).fill("").map((_, index) => (
-            <Link to={`/anime/${id}/${index + 1}`} key={index + 1} className={`text-white transition py-2 px-4 rounded-md outline-none${index + 1 === Number(episode) ? " bg-blue-sky hover:bg-blue-700" : " bg-dark-lighten hover:bg-dark-darken"}`}>
-              {index + 1}
-            </Link>
-          ))}
+        <div className={`overflow-hidden ${!expandEpisodes ? "max-h-36 darken-to-bottom" : "max-h-infinity"}`}>
+          <div className="flex gap-2 flex-wrap mb-5 justify-between fill-last-item">
+            {new Array(data?.episodes_count).fill("").map((_, index) => (
+              <Link to={`/anime/${id}/${index + 1}`} key={index + 1} className={`text-white transition py-2 px-4 rounded-md outline-none${index + 1 === Number(episode) ? " bg-blue-sky hover:bg-blue-700" : " bg-dark-lighten hover:bg-dark-darken"}`}>
+                {index + 1}
+              </Link>
+            ))}
+          </div>
         </div>
+        <span onClick={() => setExpandEpisodes((prev) => !prev)} className="text-blue-400 hover:text-blue-500 transition cursor-pointer ml-2 mt-2">
+          {expandEpisodes ? "Hide" : "Expand"}
+        </span>
       </div>
     </div>
   );

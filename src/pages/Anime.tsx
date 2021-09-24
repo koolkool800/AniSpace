@@ -52,7 +52,7 @@ const Anime: FC = () => {
                   <span>Watch trailer</span>
                 </button>
               )}
-              {recentEpisode && (
+              {recentEpisode && recentEpisode !== "1" && (
                 <Link to={`/anime/${id}/${recentEpisode}`} className="darken-btn">
                   <Play style={{ height: 30, width: 30 }} />
                   <span>Continue watching episode {recentEpisode}</span>

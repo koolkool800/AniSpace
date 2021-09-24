@@ -22,7 +22,7 @@ const Home: FC = () => {
   return (
     <>
       <div className="w-screen px-one-twenty mt-4">{data?.pages[0] ? <Carousel data={data?.pages[0].documents.slice(0, 10)} /> : <Skeleton style={{ height: "calc(0.22 * 99vw)", minHeight: 150 }} className="rounded-md" />}</div>
-      <div>
+      <div className="pb-4">
         <InfiniteScroll dataLength={data?.pages.length || 0} next={fetchNextPage} hasMore={Boolean(hasNextPage)} loader={<></>}>
           {recently.length > 0 && <AnimeGrid title="Recently" skeleton={false} data={[recently]} />}
           <AnimeGrid title="Recommend" skeleton={isFetching} data={data?.pages.map((e, index) => (index === 0 ? e.documents.slice(10) : e.documents)) || [[]]} />
